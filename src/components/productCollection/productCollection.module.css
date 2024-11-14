@@ -1,0 +1,12 @@
+.content {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: white;
+    width: 87.5vw;
+}
+
+.side-image {
+    width: 180px;
+    display: block;
+    margin: 0 auto;
+}
