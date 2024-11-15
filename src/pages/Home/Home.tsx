@@ -1,41 +1,91 @@
 import styles from './Home.module.css'
 import { Header, Footer, SideMenu, MyCarousel, ProductCollection, BusinessPartner } from '../../components'
-import { Row, Col, Typography } from 'antd'
-import { productList1, productList2, productList3 } from './mockups';
+import { Row, Col, Typography, Spin } from 'antd'
+// import { productList1, productList2, productList3 } from './mockups';
 import sideImage from '../../assets/images/sider_2019_12-09.png'
 import sideImage2 from '../../assets/images/sider_2019_02-04.png'
 import sideImage3 from '../../assets/images/sider_2019_02-04-2.png'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+interface state {
+  id: string,
+  title: string,
+  touristRoutes: any[]
+}
 
 
- export function Home (){
 
-    return(
-       <>
-       <Header />
+export function Home() {
+  const [productList, setProductList] = useState<state[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string|null>(null)
+  useEffect(() => {
+    try {
+      const loadData = async () => {
+        setLoading(true)
+        const { data } = await axios.get('http://82.157.43.234:8080/api/productCollections', {
+          headers: {
+            "x-icode": "6BF9A2FA3FA9CFA9"
+          }
+        })
+        console.log(data)
+        setProductList(data)
+        setLoading(false)
+        setError(null)
+      }
+      loadData()
+    } catch (error) {
+      if(error instanceof Error){
+        setError(error.message)
+        setLoading(false)
+      }
+    }
+
+
+  }, [])
+
+  if (loading) {
+    return <Spin
+    size='large'
+    style={{
+        marginTop:200,
+        marginBottom:200,
+        marginRight:'auto',
+        marginLeft:'auto',
+        width:'100%'
+    }}  ></Spin>
+  }
+  if(error){
+    return<div>网站出错:{error}</div>
+}
+  return (
+    <>
+      <Header />
       <div className={styles['page-content']}>
         <Row style={{ marginTop: 20 }}>
           <Col span={6}><SideMenu /></Col>
           <Col span={18}><MyCarousel /></Col>
         </Row>
-        
+
         <ProductCollection
           title={<Typography.Title level={3} type='warning'>爆款推荐</Typography.Title>}
           sideImage={sideImage}
-          products={productList1}
+          products={productList[0].touristRoutes}
         />
         <ProductCollection
           title={<Typography.Title level={3} type='danger'>新品上市</Typography.Title>}
           sideImage={sideImage2}
-          products={productList2}
+          products={productList[1].touristRoutes}
         />
         <ProductCollection
           title={<Typography.Title level={3} type='success'>国内推荐游</Typography.Title>}
           sideImage={sideImage3}
-          products={productList3}
+          products={productList[2].touristRoutes}
         />
         <BusinessPartner />
       </div>
       <Footer />
-       </>
-    )
+    </>
+  )
 }
