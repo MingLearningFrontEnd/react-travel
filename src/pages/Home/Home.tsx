@@ -7,6 +7,8 @@ import sideImage2 from '../../assets/images/sider_2019_02-04.png'
 import sideImage3 from '../../assets/images/sider_2019_02-04-2.png'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next'
+
 
 interface state {
   id: string,
@@ -20,6 +22,7 @@ export function Home() {
   const [productList, setProductList] = useState<state[]>([])
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string|null>(null)
+  const {t} =useTranslation()
   useEffect(() => {
     try {
       const loadData = async () => {
@@ -69,17 +72,17 @@ export function Home() {
         </Row>
 
         <ProductCollection
-          title={<Typography.Title level={3} type='warning'>爆款推荐</Typography.Title>}
+          title={<Typography.Title level={3} type='warning'>{t("home_page.hot_recommended")}</Typography.Title>}
           sideImage={sideImage}
           products={productList[0].touristRoutes}
         />
         <ProductCollection
-          title={<Typography.Title level={3} type='danger'>新品上市</Typography.Title>}
+          title={<Typography.Title level={3} type='danger'>{t("home_page.new_arrival")}</Typography.Title>}
           sideImage={sideImage2}
           products={productList[1].touristRoutes}
         />
         <ProductCollection
-          title={<Typography.Title level={3} type='success'>国内推荐游</Typography.Title>}
+          title={<Typography.Title level={3} type='success'>{t("home_page.domestic_travel")}</Typography.Title>}
           sideImage={sideImage3}
           products={productList[2].touristRoutes}
         />

@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Home,Login,Detail,Register } from "../pages";
+import { Home,Login,Detail,Register,Search } from "../pages";
 
 
  const router = createBrowserRouter(
@@ -15,6 +15,9 @@ import { Home,Login,Detail,Register } from "../pages";
         },
         {
             path:'/detail/:touristRouteId',element:<Detail/>
+        },
+        {
+            path:'/search/:keyword' , element:<Search/>
         },
         {
             path:'*',element:<h1> 页面找不见了</h1>
