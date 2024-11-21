@@ -1,9 +1,10 @@
 import './Register.module.css'
-
-export function Register(){
-    return(
-        <div>
-            我是注册页
-        </div>
+import { UserLayout } from '../../layouts/userLayout'
+import { RegiserForm } from './RegisterForm'
+export function Register() {
+    return (
+        <UserLayout>
+            <RegiserForm/>
+        </UserLayout>
     )
 }

@@ -1,21 +1,20 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-interface SearchSlice{
+interface SearchState{
     loading: boolean,
-    error:any|null,
+    error:string|null,
     data:any,
-    pagination: any,
+    pagination: any
 }
 
-const initialState:SearchSlice ={
+const initialState:SearchState ={
     loading:true,
     error:null,
     data:null,
     pagination:null
 }
-
-const searchSlice = createSlice({
+ const searchSlice = createSlice({
     name:'searchSlice',
     initialState,
     reducers:{},    
@@ -27,7 +26,7 @@ const searchSlice = createSlice({
             state.data = payload.data
             state.pagination = payload.pagination
             state.error = null
-        }).addCase(getSearch.rejected, (state, {payload})=>{
+        }).addCase(getSearch.rejected, (state, {payload}:any)=>{
             state.loading =false
             state.error = payload
         })
@@ -42,7 +41,6 @@ export const getSearch = createAsyncThunk(
             url+=`&keyword=${parameters.keywords}`
         }
       const response = await axios.get(url) 
-        console.log(response)
       return {
         data:response.data,
         pagination:JSON.parse(response.headers["x-pagination"])

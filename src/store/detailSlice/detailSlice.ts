@@ -3,13 +3,13 @@ import axios from "axios";
 
 
 
-interface DetailSlice {
+interface DetailState {
     loading: boolean,
     error: any | null,
     products: any,
 }
 
-const initialState: DetailSlice = {
+const initialState: DetailState = {
     loading: true,
     error: null,
     products: null

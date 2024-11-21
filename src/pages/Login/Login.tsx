@@ -1,10 +1,13 @@
 import './Login.module.css'
+import { UserLayout } from '../../layouts/userLayout'
+import { LoginFrom } from './LoginForm'
 
-export function Login (){
+export function Login() {
 
-    return(
-        <div>
-            我是login页面
-        </div>
+    return (
+        <UserLayout>
+            <LoginFrom />
+        </UserLayout>
+
     )
 }

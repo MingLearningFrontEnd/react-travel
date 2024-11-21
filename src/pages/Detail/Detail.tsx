@@ -3,12 +3,12 @@ import styles from './Detail.module.css'
 // import axios from 'axios'
 import { useEffect} from 'react'
 import { Spin, Row, Col, DatePicker, Divider, Typography,Anchor, Menu} from 'antd'
-import { Header, Footer, ProductIntro } from '../../components'
+import { ProductIntro } from '../../components'
 // import { fetchStart,fetchFail,fetchSuccess } from '../../store/detailSlice/detailSlice'
 import { useSelector} from 'react-redux'
 import { getProductDetail } from '../../store/detailSlice/detailSlice'
 import { useAppDispatch } from '../../store/hooks'
-
+import { MainLayout } from '../../layouts/mainLayout'
 
 type MatchParams = {
     touristRouteId: string
@@ -52,10 +52,7 @@ export function Detail() {
         return <div>网站出错:{error}</div>
     }
     return (
-        <>
-            <Header />
-            <div className={styles['page-content']}>
-
+        <MainLayout>
                 {/* 产品简介，日期选择 */}
                 <div className={styles['product-intro-container']}>
                     <Row>
@@ -126,11 +123,7 @@ export function Detail() {
                 <div id='comments' className={styles['product-detail-container']}>
 
                 </div>
-
-            </div>
-
-            <Footer />
-        </>
+        </MainLayout>
     )
 
 }

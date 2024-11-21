@@ -17,7 +17,7 @@ import { Home,Login,Detail,Register,Search } from "../pages";
             path:'/detail/:touristRouteId',element:<Detail/>
         },
         {
-            path:'/search/:keyword' , element:<Search/>
+            path:'/search/:keyword?' , element:<Search/>
         },
         {
             path:'*',element:<h1> 页面找不见了</h1>
