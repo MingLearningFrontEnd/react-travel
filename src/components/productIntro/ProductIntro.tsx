@@ -106,8 +106,8 @@ export function ProductIntro({ title, shortDescription, price, coupons, points, 
                 </Typography.Text>
             </div>
              <Carousel autoplay slidesToShow={3}>
-                {picture.map(p=>(
-                    <Image height={150} src={p}/>
+                {picture.map((p,i)=>(
+                    <Image height={150} src={p} key={i}/>
                 ))}
              </Carousel>
              <Table dataSource={data}

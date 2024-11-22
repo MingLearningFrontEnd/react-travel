@@ -22,7 +22,7 @@ const initialState:userState= {
                 state.token = null
                 state.error = null
                 state.loading = false
-                localStorage.removeItem('token')
+                
             }
         },
         extraReducers: (builder) => {
@@ -31,7 +31,6 @@ const initialState:userState= {
             }).addCase(loginIn.fulfilled, (state, { payload }: any) => {
                 state.loading = false
                 state.token = payload
-                localStorage.setItem('token', payload)
                 state.error = null
             }).addCase(loginIn.rejected, (state, { payload }: any) => {
                 state.loading = false

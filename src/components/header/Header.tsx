@@ -24,6 +24,8 @@ export function Header() {
   const { t } = useTranslation()
   const { token } = useSelector((state: any) => state.userSlice)
   const [username, setUsername] = useState('')
+  const { items } = useSelector((state: any) => state.shoppingCartSlice)
+  const { loading } = useSelector((state: any) => state.shoppingCartSlice)
 
 
 
@@ -44,6 +46,7 @@ export function Header() {
     }
 
   }
+
   const handleSearch = (keyword: string) => {
     if (keyword) {
       navigate(`/search/${keyword}`)
@@ -52,7 +55,7 @@ export function Header() {
     }
   }
 
-  const onLogOut = ()=>{
+  const onLogOut = () => {
     dispatch(logOut())
     navigate('/')
   }
@@ -82,12 +85,17 @@ export function Header() {
             <span>{t('header.welcome')}
               <Typography.Text strong>{username}</Typography.Text>
             </span>
-            <Button>{t('header.shoppingCart')}</Button>
-            <Button onClick={()=>onLogOut()}>{t("header.signOut")}</Button>
+            <Button
+              onClick={() => navigate('/shoppingCart')}
+              loading={loading}
+            >{
+                t('header.shoppingCart')}({items.length})
+            </Button>
+            <Button onClick={() => onLogOut()}>{t("header.signOut")}</Button>
           </Button.Group>
             : <Button.Group className={styles['button-group']}>
-              <Button onClick={() => navigate('register')}>{t('header.register')}</Button>
-              <Button onClick={() => navigate('login')}>{t('header.signin')}</Button>
+              <Button onClick={() => navigate('/register')}>{t('header.register')}</Button>
+              <Button onClick={() => navigate('/login')}>{t('header.signin')}</Button>
             </Button.Group>}
         </div>
       </div>
@@ -125,6 +133,7 @@ export function Header() {
           { key: "16", label: t("header.insurance") },
         ]}
       >
+
       </Menu>
     </div>
   )

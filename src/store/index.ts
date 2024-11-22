@@ -3,6 +3,8 @@ import detailSlice from './detailSlice/detailSlice'
 import languageSlice from './LanguageSlice/languageSlice'
 import searchSlice from './SearchSlice/searchSlice'
 import userSlice  from './userSlice/userSlice'
+import shoppingCartSlice from './shoppingCartSlice/shoppingCartSlice'
+import orderSlice from './orderSlice/orderSlice'
 import {persistStore,persistReducer} from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
@@ -17,17 +19,21 @@ const rootReducer = combineReducers({
     detailSlice,
     languageSlice,
     searchSlice,
-    userSlice
+    userSlice,
+    shoppingCartSlice,
+    orderSlice
 })
 
 const persistedReducer = persistReducer(persistConfig,rootReducer ) //持久化的reducer
 
 const store = configureStore({
     reducer: persistedReducer, //持久化的reducer替换未持久化reducer
+    // reducer:rootReducer,
     devTools:true
 })
 
 const persistor = persistStore(store) //创建持久化store
 
 export type AppDispatch = typeof store.dispatch
+
 export default {store, persistor}
