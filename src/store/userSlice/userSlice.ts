@@ -45,7 +45,7 @@ export const loginIn = createAsyncThunk(
     'userSlice/loginIn',
     async (parameters: {email: string,password: string}) => {
         const {data} = await axios.post(
-            `http://82.157.43.234:8080/auth/login`,
+            `/auth/login`,
             {
                 email: parameters.email,
                 password: parameters.password,

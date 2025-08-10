@@ -46,7 +46,7 @@ const orderSlice = createSlice({
 export const getOrder = createAsyncThunk(
     'orderSlice/getOrder',
     async (parameters: { token: string, orderId: string }) => {
-        const { data } = await axios.post(`http://82.157.43.234:8080/api/orders/${parameters.orderId}/placeOrder`,
+        const { data } = await axios.post(`/api/orders/${parameters.orderId}/placeOrder`,
             null,
             {
                 headers: {

@@ -51,7 +51,7 @@ const detailSlice = createSlice({
  export const getProductDetail = createAsyncThunk(
     'detailSlice/getProductDetail',
     async(touristRouteId:string)=>{
-       const {data} = await axios.get(`http://82.157.43.234:8080/api/touristRoutes/${touristRouteId}`)
+       const {data} = await axios.get(`/api/touristRoutes/${touristRouteId}`)
             return data
     }
  )

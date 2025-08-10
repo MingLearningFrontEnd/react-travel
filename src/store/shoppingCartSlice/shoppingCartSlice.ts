@@ -65,7 +65,7 @@ export const getShoppingCart = createAsyncThunk(
     'shoppingCartSlice/getShoppingCart',
     async (token:string) => {
         const { data } = await axios.get(
-            'http://82.157.43.234:8080/api/shoppingCart',
+            '/api/shoppingCart',
             {
                 headers: {
                     Authorization: `bearer ${token}`
@@ -80,7 +80,7 @@ export const addShoppingCart = createAsyncThunk(
     'shoppingCartSlice/addShoppingCart',
     async (parameters: { token: string, touristRouteId: string }) => {
         const { data } = await axios.post(
-            'http://82.157.43.234:8080/api/shoppingCart/items',
+            '/api/shoppingCart/items',
             {
                 touristRouteId: parameters.touristRouteId
             },
@@ -98,7 +98,7 @@ export const clearShoppingCart = createAsyncThunk(
     'shoppingCartSlice/clearShoppingCart',
     async (parameters: { token: string, itemIds: number[] }) => {
         return await axios.delete(
-            `http://82.157.43.234:8080/api/shoppingCart/items/(${parameters.itemIds.join(',')})`,
+            `/api/shoppingCart/items/(${parameters.itemIds.join(',')})`,
             {
                 headers: {
                     Authorization: `bearer ${parameters.token}`
@@ -113,7 +113,7 @@ export const checkOut = createAsyncThunk(
     'shoppingCartSlice/checkOut',
     async (token: string) => {
         const { data } = await axios.post(
-            'http://82.157.43.234:8080/api/shoppingCart/checkout',
+            '/api/shoppingCart/checkout',
             null,
             {
                 headers: {

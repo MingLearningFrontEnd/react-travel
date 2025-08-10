@@ -36,7 +36,7 @@ const initialState:SearchState ={
 export const getSearch = createAsyncThunk(
     'searchSlice/getSearch',
     async(parameters:{keywords:string,nextPage:number|string,pageSize:number|string})=>{
-        let url = `http://82.157.43.234:8080/api/touristRoutes?pageNumber=${parameters.nextPage}&pageSize=${parameters.pageSize}`
+        let url = `/api/touristRoutes?pageNumber=${parameters.nextPage}&pageSize=${parameters.pageSize}`
         if(parameters.keywords){
             url+=`&keyword=${parameters.keywords}`
         }
