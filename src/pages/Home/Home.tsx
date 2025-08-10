@@ -27,7 +27,7 @@ export function Home() {
     try {
       const loadData = async () => {
         setLoading(true)
-        const { data } = await axios.get('http://82.157.43.234:8080/api/productCollections', {
+        const { data } = await axios.get('/api/productCollections', {
           headers: {
             "x-icode": "6BF9A2FA3FA9CFA9"
           }
